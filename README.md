@@ -1,1 +1,1 @@
-I built a simple carousel with indicators, prev/next buttons and fade in/out animation.
+Live site: [https://assignment-04-ostad-mastering-vue-js.salahrand.me](https://assignment-04-ostad-mastering-vue-js.salahrand.me)

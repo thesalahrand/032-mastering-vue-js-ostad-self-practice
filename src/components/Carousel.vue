@@ -13,13 +13,16 @@ const images = [
 
 <template>
   <div class="relative w-full">
+    <h2 class="text-center text-2xl text-gray-500 mb-6 font-bold">
+      Fade In/Out Carousel
+    </h2>
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
       <!-- Item 1 -->
       <div v-for="(image, idx) in images" :key="idx">
         <img
           :src="image"
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 transition-opacity duration-700 ease-in"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 transition-opacity duration-700 ease-in-out"
           :class="activeImgIdx == idx ? 'opacity-100' : 'opacity-0'"
           :alt="`Random Image ${idx + 1}`"
         />
