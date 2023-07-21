@@ -1,1 +1,1 @@
-Assalamu 'alaikum. This git repository contains all of my self-practice contents learnt through my journey in [Mastering Vue.js Course](https://ostad.app/course/mastering-vue-js) by [Ostad](https://ostad.app/).
+I was a bit confused regarding [Class and Style Bindings](https://vuejs.org/guide/essentials/class-and-style.html). But, I guess I got a solid understanding of it.
