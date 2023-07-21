@@ -1,1 +1,1 @@
-Assalamu 'alaikum. This git repository contains all of my self-practice contents learnt through my journey in [Mastering Vue.js Course](https://ostad.app/course/mastering-vue-js) by [Ostad](https://ostad.app/).
+I built a simple carousel with indicators, prev/next buttons and fade in/out animation.
