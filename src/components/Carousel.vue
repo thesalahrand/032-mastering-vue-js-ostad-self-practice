@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 
-const activeImgIdx = ref(0)
+let autoSlideInterval
+const activeSlideIdx = ref(0)
 const images = [
   'https://randomwordgenerator.com/img/picture-generator/54e1d1444d50b10ff3d8992cc12c30771037dbf85254794075297ad39f45_640.jpg',
   'https://randomwordgenerator.com/img/picture-generator/hot-air-balloon-736879_640.jpg',
@@ -9,21 +10,51 @@ const images = [
   'https://randomwordgenerator.com/img/picture-generator/57e8d34b4c5bae14f1dc8460962e33791c3ad6e04e50744172297bd59e4dc2_640.jpg',
   'https://randompicturegenerator.com/img/national-park-generator/g0006086023a5ee189596aaafa505a5a598f0405db4b879bf59c515b9da783351111d35ee716fb286df19d0e3191256c2_640.jpg',
 ]
+
+const getPrevSlideIdx = (_activeSlideIdx) => {
+  return _activeSlideIdx - 1 < 0 ? images.length - 1 : _activeSlideIdx - 1
+}
+
+const getNextSlideIdx = (_activeSlideIdx) => {
+  return _activeSlideIdx + 1 >= images.length ? 0 : _activeSlideIdx + 1
+}
+
+const initAutoSlide = () => {
+  clearInterval(autoSlideInterval)
+  autoSlideInterval = setInterval(() => {
+    activeSlideIdx.value = getNextSlideIdx(activeSlideIdx.value)
+  }, 5000)
+}
+
+initAutoSlide()
 </script>
 
 <template>
   <div class="relative w-full">
     <h2 class="text-center text-2xl text-gray-500 mb-6 font-bold">
-      Fade In/Out Carousel
+      Slide Left/Right Carousel
     </h2>
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
       <!-- Item 1 -->
-      <div v-for="(image, idx) in images" :key="idx">
+      <div
+        v-for="(image, idx) in images"
+        :key="idx"
+        class="duration-700 ease-in-out absolute inset-0 transition-transform transform"
+        :class="{
+          '-translate-x-full z-10': getPrevSlideIdx(activeSlideIdx) == idx,
+          'translate-x-full z-10': getNextSlideIdx(activeSlideIdx) == idx,
+          'translate-x-0 z-20': activeSlideIdx == idx,
+          '-translate-x-full z-10 hidden':
+            getPrevSlideIdx(activeSlideIdx) != idx &&
+            getNextSlideIdx(activeSlideIdx) != idx &&
+            activeSlideIdx != idx,
+        }"
+      >
         <img
           :src="image"
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 transition-opacity duration-700 ease-in-out"
-          :class="activeImgIdx == idx ? 'opacity-100' : 'opacity-0'"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          :class="activeSlideIdx == idx ? 'opacity-100' : 'opacity-0'"
           :alt="`Random Image ${idx + 1}`"
         />
       </div>
@@ -36,8 +67,8 @@ const images = [
         class="w-3 h-3 rounded-full cursor-pointer"
         v-for="(image, idx) in images"
         :key="idx"
-        @click="activeImgIdx = idx"
-        :class="activeImgIdx == idx ? 'bg-white' : 'bg-white/50'"
+        @click=";(activeSlideIdx = idx), initAutoSlide()"
+        :class="activeSlideIdx == idx ? 'bg-white' : 'bg-white/50'"
       ></span>
     </div>
     <!-- Slider controls -->
@@ -45,8 +76,7 @@ const images = [
       type="button"
       class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
       @click="
-        activeImgIdx =
-          activeImgIdx - 1 < 0 ? images.length - 1 : activeImgIdx - 1
+        ;(activeSlideIdx = getPrevSlideIdx(activeSlideIdx)), initAutoSlide()
       "
     >
       <span
@@ -74,7 +104,7 @@ const images = [
       type="button"
       class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
       @click="
-        activeImgIdx = activeImgIdx + 1 >= images.length ? 0 : activeImgIdx + 1
+        ;(activeSlideIdx = getNextSlideIdx(activeSlideIdx)), initAutoSlide()
       "
     >
       <span
