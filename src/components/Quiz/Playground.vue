@@ -73,28 +73,13 @@ const toggleChosenOptions = (questionIdx, optionIdx) => {
       :quiz-duration="quizDuration"
       @on-change-game-state="onChangeGameState"
     />
-    <Questions
-      v-show="!showResult"
-      class="my-6"
-      :game-state="gameState"
-      :questions="questions"
-      :curr-question-idx="currQuestionIdx"
-      :quiz-questions-cnt="quizQuestionsCnt"
-      @go-to-prev-question="goToPrevQuestion"
-      @go-to-next-question="goToNextQuestion"
-      @toggle-chosen-options="toggleChosenOptions"
-    />
-    <Actions
-      v-show="!showResult"
-      @on-change-game-state="onChangeGameState"
-      @end-game="endGame"
-      :game-state="gameState"
-    />
-    <Result
-      v-show="showResult"
-      :marks="marks"
-      :quiz-questions-cnt="quizQuestionsCnt"
-    />
+    <button
+      type="button"
+      class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-[128px] py-2.5"
+      @click="endGame"
+    >
+      End
+    </button>
   </div>
 </template>
 
