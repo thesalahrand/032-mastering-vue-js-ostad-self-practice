@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import Intro from './Intro.vue'
 import Playground from './Playground.vue'
 
-const QUIZ_DURATION_IN_SECS = 5
+const QUIZ_DURATION_IN_SECS = 10
 const QUIZ_QUESTIONS_CNT = 5
 
 const gameState = ref('intro')

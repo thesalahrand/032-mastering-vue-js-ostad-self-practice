@@ -40,11 +40,13 @@ const feedbacks = [
       class="flex flex-col items-center"
       v-for="(feedback, idx) in feedbacks"
       :key="idx"
-      v-show="
+      :class="
         ((marks / quizQuestionsCnt) * 100).toFixed(2) >=
           feedback.minScorePercent &&
         ((marks / quizQuestionsCnt) * 100).toFixed(2) <=
           feedback.maxScorePercent
+          ? 'flex'
+          : 'hidden'
       "
     >
       <span class="text-8xl">{{ feedback.emoji }}</span>

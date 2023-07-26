@@ -36,8 +36,9 @@ const onChangeGameState = (state) => {
   if (state == 'finished') {
     calcMarks()
     showResult.value = true
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       showResult.value = false
+      clearTimeout(timeout)
     }, 5000)
   }
   emit('changeGameState', state)
