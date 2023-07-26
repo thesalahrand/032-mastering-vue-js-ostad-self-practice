@@ -26,13 +26,7 @@ const questions = reactive(
       :quiz-duration="quizDuration"
       @on-change-game-state="onChangeGameState"
     />
-    <button
-      type="button"
-      class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-[128px] py-2.5"
-      @click="endGame"
-    >
-      End
-    </button>
+    <Questions :questions="questions" />
   </div>
 </template>
 
