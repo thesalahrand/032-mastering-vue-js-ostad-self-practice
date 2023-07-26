@@ -1,11 +1,11 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps(['quizDuration'])
 const emit = defineEmits(['onChangeGameState'])
 
 const endGame = () => {
-  emit('onChangeGameState', 'intro')
+  emit('onChangeGameState', 'finished')
 }
 
 const remainingTime = ref(props.quizDuration)
@@ -24,8 +24,8 @@ setTimeout(() => {
 </script>
 
 <template>
-  <div class="border px-4 py-2.5 rounded-lg text-gray-500">
-    Remaining: <span class="font-medium">{{ remainingTime }}</span>
+  <div class="text-gray-700 text-right">
+    Remaining: <span class="font-semibold">{{ remainingTime }} s.</span>
   </div>
 </template>
 
