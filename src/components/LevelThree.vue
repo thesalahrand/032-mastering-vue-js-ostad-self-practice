@@ -1,11 +1,10 @@
 <script setup>
-defineProps(['user'])
+defineProps(['name', 'email'])
 </script>
 
 <template>
   <div class="ml-8 mt-8 p-4 border border-dashed rounded">
     <h6 class="text-lg font-bold dark:text-white mb-4">Level Three</h6>
-    {{ user }}
     <form>
       <div class="mb-6">
         <label
@@ -17,7 +16,8 @@ defineProps(['user'])
           type="text"
           id="name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          v-model="user.name"
+          :value="name"
+          @input="$emit('update:name', $event.target.value)"
           required
         />
       </div>
@@ -31,7 +31,8 @@ defineProps(['user'])
           type="email"
           id="email"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          v-model="user.email"
+          :value="email"
+          @input="$emit('update:email', $event.target.value)"
           required
         />
       </div>

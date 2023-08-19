@@ -11,7 +11,6 @@ const user = reactive({
 <template>
   <div class="ml-8 mt-8 p-4 border border-dashed rounded">
     <h6 class="text-lg font-bold dark:text-white mb-4">Level One</h6>
-    {{ user }}
     <form>
       <div class="mb-6">
         <label
@@ -42,7 +41,7 @@ const user = reactive({
         />
       </div>
     </form>
-    <LevelTwo :user="user" />
+    <LevelTwo v-model:name="user.name" v-model:email="user.email" />
   </div>
 </template>
 
