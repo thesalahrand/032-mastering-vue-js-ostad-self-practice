@@ -1,18 +1,6 @@
 <script setup>
-import { provide, reactive } from 'vue'
+import counter from '../data/counterState'
 import LevelTwo from './LevelTwo.vue'
-
-const counter = reactive({
-  count: 0,
-  increase() {
-    this.count++
-  },
-  decease() {
-    this.count--
-  },
-})
-
-provide('counterProvider', counter)
 </script>
 
 <template>

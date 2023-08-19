@@ -1,8 +1,6 @@
 <script setup>
-import { inject } from 'vue'
+import counter from '../data/counterState'
 import LevelThree from './LevelThree.vue'
-
-const counter = inject('counterProvider')
 </script>
 
 <template>

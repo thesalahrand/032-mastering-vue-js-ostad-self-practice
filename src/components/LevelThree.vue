@@ -1,7 +1,5 @@
 <script setup>
-import { inject } from 'vue'
-
-const counter = inject('counterProvider')
+import counter from '../data/counterState'
 </script>
 
 <template>
